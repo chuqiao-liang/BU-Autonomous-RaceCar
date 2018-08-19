@@ -48,13 +48,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nvidia/Downloads/aruco304
+CMAKE_SOURCE_DIR = /home/nvidia/BU-Autonomous-RaceCar/sensing
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nvidia/Downloads/aruco304/build
+CMAKE_BINARY_DIR = /home/nvidia/BU-Autonomous-RaceCar/sensing/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
 
 # Special rule for the target install
 install: preinstall
@@ -68,27 +100,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -100,38 +111,27 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target install/local
-install/local/fast: install/local
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : install/local/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/nvidia/Downloads/aruco304/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/Downloads/aruco304/build/CMakeFiles /home/nvidia/Downloads/aruco304/build/utils/CMakeFiles/progress.marks
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/Downloads/aruco304/build/CMakeFiles 0
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/BU-Autonomous-RaceCar/sensing/build/CMakeFiles /home/nvidia/BU-Autonomous-RaceCar/sensing/build/utils/CMakeFiles/progress.marks
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/BU-Autonomous-RaceCar/sensing/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/clean
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,37 +141,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/preinstall
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/preinstall
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/nvidia/Downloads/aruco304/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-utils/CMakeFiles/aruco_simple.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_simple.dir/rule
-.PHONY : utils/CMakeFiles/aruco_simple.dir/rule
-
-# Convenience name for target.
-aruco_simple: utils/CMakeFiles/aruco_simple.dir/rule
-
-.PHONY : aruco_simple
-
-# fast build rule for target.
-aruco_simple/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/build
-.PHONY : aruco_simple/fast
-
-# Convenience name for target.
 utils/CMakeFiles/aruco_print_marker.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_print_marker.dir/rule
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_print_marker.dir/rule
 .PHONY : utils/CMakeFiles/aruco_print_marker.dir/rule
 
 # Convenience name for target.
@@ -181,27 +166,12 @@ aruco_print_marker: utils/CMakeFiles/aruco_print_marker.dir/rule
 
 # fast build rule for target.
 aruco_print_marker/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/build
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/build
 .PHONY : aruco_print_marker/fast
 
 # Convenience name for target.
-utils/CMakeFiles/aruco_test.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_test.dir/rule
-.PHONY : utils/CMakeFiles/aruco_test.dir/rule
-
-# Convenience name for target.
-aruco_test: utils/CMakeFiles/aruco_test.dir/rule
-
-.PHONY : aruco_test
-
-# fast build rule for target.
-aruco_test/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/build
-.PHONY : aruco_test/fast
-
-# Convenience name for target.
 utils/CMakeFiles/aruco_print_dictionary.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_print_dictionary.dir/rule
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_print_dictionary.dir/rule
 .PHONY : utils/CMakeFiles/aruco_print_dictionary.dir/rule
 
 # Convenience name for target.
@@ -211,12 +181,42 @@ aruco_print_dictionary: utils/CMakeFiles/aruco_print_dictionary.dir/rule
 
 # fast build rule for target.
 aruco_print_dictionary/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/build
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/build
 .PHONY : aruco_print_dictionary/fast
 
 # Convenience name for target.
+utils/CMakeFiles/aruco_simple.dir/rule:
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_simple.dir/rule
+.PHONY : utils/CMakeFiles/aruco_simple.dir/rule
+
+# Convenience name for target.
+aruco_simple: utils/CMakeFiles/aruco_simple.dir/rule
+
+.PHONY : aruco_simple
+
+# fast build rule for target.
+aruco_simple/fast:
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/build
+.PHONY : aruco_simple/fast
+
+# Convenience name for target.
+utils/CMakeFiles/aruco_test.dir/rule:
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_test.dir/rule
+.PHONY : utils/CMakeFiles/aruco_test.dir/rule
+
+# Convenience name for target.
+aruco_test: utils/CMakeFiles/aruco_test.dir/rule
+
+.PHONY : aruco_test
+
+# fast build rule for target.
+aruco_test/fast:
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/build
+.PHONY : aruco_test/fast
+
+# Convenience name for target.
 utils/CMakeFiles/aruco_tracker.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_tracker.dir/rule
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_tracker.dir/rule
 .PHONY : utils/CMakeFiles/aruco_tracker.dir/rule
 
 # Convenience name for target.
@@ -226,12 +226,12 @@ aruco_tracker: utils/CMakeFiles/aruco_tracker.dir/rule
 
 # fast build rule for target.
 aruco_tracker/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/build
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/build
 .PHONY : aruco_tracker/fast
 
 # Convenience name for target.
 utils/CMakeFiles/aruco_batch_processing.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_batch_processing.dir/rule
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils/CMakeFiles/aruco_batch_processing.dir/rule
 .PHONY : utils/CMakeFiles/aruco_batch_processing.dir/rule
 
 # Convenience name for target.
@@ -241,7 +241,7 @@ aruco_batch_processing: utils/CMakeFiles/aruco_batch_processing.dir/rule
 
 # fast build rule for target.
 aruco_batch_processing/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/build
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/build
 .PHONY : aruco_batch_processing/fast
 
 aruco_batch_processing.o: aruco_batch_processing.cpp.o
@@ -250,7 +250,7 @@ aruco_batch_processing.o: aruco_batch_processing.cpp.o
 
 # target to build an object file
 aruco_batch_processing.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/aruco_batch_processing.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/aruco_batch_processing.cpp.o
 .PHONY : aruco_batch_processing.cpp.o
 
 aruco_batch_processing.i: aruco_batch_processing.cpp.i
@@ -259,7 +259,7 @@ aruco_batch_processing.i: aruco_batch_processing.cpp.i
 
 # target to preprocess a source file
 aruco_batch_processing.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/aruco_batch_processing.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/aruco_batch_processing.cpp.i
 .PHONY : aruco_batch_processing.cpp.i
 
 aruco_batch_processing.s: aruco_batch_processing.cpp.s
@@ -268,7 +268,7 @@ aruco_batch_processing.s: aruco_batch_processing.cpp.s
 
 # target to generate assembly for a file
 aruco_batch_processing.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/aruco_batch_processing.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_batch_processing.dir/build.make utils/CMakeFiles/aruco_batch_processing.dir/aruco_batch_processing.cpp.s
 .PHONY : aruco_batch_processing.cpp.s
 
 aruco_print_dictionary.o: aruco_print_dictionary.cpp.o
@@ -277,7 +277,7 @@ aruco_print_dictionary.o: aruco_print_dictionary.cpp.o
 
 # target to build an object file
 aruco_print_dictionary.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/aruco_print_dictionary.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/aruco_print_dictionary.cpp.o
 .PHONY : aruco_print_dictionary.cpp.o
 
 aruco_print_dictionary.i: aruco_print_dictionary.cpp.i
@@ -286,7 +286,7 @@ aruco_print_dictionary.i: aruco_print_dictionary.cpp.i
 
 # target to preprocess a source file
 aruco_print_dictionary.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/aruco_print_dictionary.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/aruco_print_dictionary.cpp.i
 .PHONY : aruco_print_dictionary.cpp.i
 
 aruco_print_dictionary.s: aruco_print_dictionary.cpp.s
@@ -295,7 +295,7 @@ aruco_print_dictionary.s: aruco_print_dictionary.cpp.s
 
 # target to generate assembly for a file
 aruco_print_dictionary.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/aruco_print_dictionary.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_dictionary.dir/build.make utils/CMakeFiles/aruco_print_dictionary.dir/aruco_print_dictionary.cpp.s
 .PHONY : aruco_print_dictionary.cpp.s
 
 aruco_print_marker.o: aruco_print_marker.cpp.o
@@ -304,7 +304,7 @@ aruco_print_marker.o: aruco_print_marker.cpp.o
 
 # target to build an object file
 aruco_print_marker.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/aruco_print_marker.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/aruco_print_marker.cpp.o
 .PHONY : aruco_print_marker.cpp.o
 
 aruco_print_marker.i: aruco_print_marker.cpp.i
@@ -313,7 +313,7 @@ aruco_print_marker.i: aruco_print_marker.cpp.i
 
 # target to preprocess a source file
 aruco_print_marker.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/aruco_print_marker.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/aruco_print_marker.cpp.i
 .PHONY : aruco_print_marker.cpp.i
 
 aruco_print_marker.s: aruco_print_marker.cpp.s
@@ -322,7 +322,7 @@ aruco_print_marker.s: aruco_print_marker.cpp.s
 
 # target to generate assembly for a file
 aruco_print_marker.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/aruco_print_marker.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_print_marker.dir/build.make utils/CMakeFiles/aruco_print_marker.dir/aruco_print_marker.cpp.s
 .PHONY : aruco_print_marker.cpp.s
 
 aruco_simple.o: aruco_simple.cpp.o
@@ -331,7 +331,7 @@ aruco_simple.o: aruco_simple.cpp.o
 
 # target to build an object file
 aruco_simple.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/aruco_simple.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/aruco_simple.cpp.o
 .PHONY : aruco_simple.cpp.o
 
 aruco_simple.i: aruco_simple.cpp.i
@@ -340,7 +340,7 @@ aruco_simple.i: aruco_simple.cpp.i
 
 # target to preprocess a source file
 aruco_simple.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/aruco_simple.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/aruco_simple.cpp.i
 .PHONY : aruco_simple.cpp.i
 
 aruco_simple.s: aruco_simple.cpp.s
@@ -349,7 +349,7 @@ aruco_simple.s: aruco_simple.cpp.s
 
 # target to generate assembly for a file
 aruco_simple.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/aruco_simple.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_simple.dir/build.make utils/CMakeFiles/aruco_simple.dir/aruco_simple.cpp.s
 .PHONY : aruco_simple.cpp.s
 
 aruco_test.o: aruco_test.cpp.o
@@ -358,7 +358,7 @@ aruco_test.o: aruco_test.cpp.o
 
 # target to build an object file
 aruco_test.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/aruco_test.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/aruco_test.cpp.o
 .PHONY : aruco_test.cpp.o
 
 aruco_test.i: aruco_test.cpp.i
@@ -367,7 +367,7 @@ aruco_test.i: aruco_test.cpp.i
 
 # target to preprocess a source file
 aruco_test.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/aruco_test.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/aruco_test.cpp.i
 .PHONY : aruco_test.cpp.i
 
 aruco_test.s: aruco_test.cpp.s
@@ -376,7 +376,7 @@ aruco_test.s: aruco_test.cpp.s
 
 # target to generate assembly for a file
 aruco_test.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/aruco_test.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_test.dir/build.make utils/CMakeFiles/aruco_test.dir/aruco_test.cpp.s
 .PHONY : aruco_test.cpp.s
 
 aruco_tracker.o: aruco_tracker.cpp.o
@@ -385,7 +385,7 @@ aruco_tracker.o: aruco_tracker.cpp.o
 
 # target to build an object file
 aruco_tracker.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/aruco_tracker.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/aruco_tracker.cpp.o
 .PHONY : aruco_tracker.cpp.o
 
 aruco_tracker.i: aruco_tracker.cpp.i
@@ -394,7 +394,7 @@ aruco_tracker.i: aruco_tracker.cpp.i
 
 # target to preprocess a source file
 aruco_tracker.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/aruco_tracker.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/aruco_tracker.cpp.i
 .PHONY : aruco_tracker.cpp.i
 
 aruco_tracker.s: aruco_tracker.cpp.s
@@ -403,7 +403,7 @@ aruco_tracker.s: aruco_tracker.cpp.s
 
 # target to generate assembly for a file
 aruco_tracker.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/aruco_tracker.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils/CMakeFiles/aruco_tracker.dir/build.make utils/CMakeFiles/aruco_tracker.dir/aruco_tracker.cpp.s
 .PHONY : aruco_tracker.cpp.s
 
 # Help Target
@@ -412,18 +412,18 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... aruco_simple"
-	@echo "... aruco_print_marker"
+	@echo "... rebuild_cache"
+	@echo "... list_install_components"
+	@echo "... install/local"
 	@echo "... install"
-	@echo "... aruco_test"
+	@echo "... install/strip"
+	@echo "... aruco_print_marker"
 	@echo "... aruco_print_dictionary"
+	@echo "... edit_cache"
+	@echo "... aruco_simple"
+	@echo "... aruco_test"
 	@echo "... aruco_tracker"
 	@echo "... aruco_batch_processing"
-	@echo "... edit_cache"
-	@echo "... list_install_components"
-	@echo "... install/strip"
-	@echo "... install/local"
-	@echo "... rebuild_cache"
 	@echo "... aruco_batch_processing.o"
 	@echo "... aruco_batch_processing.i"
 	@echo "... aruco_batch_processing.s"
@@ -453,6 +453,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/nvidia/Downloads/aruco304/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

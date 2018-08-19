@@ -48,46 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nvidia/Downloads/aruco304
+CMAKE_SOURCE_DIR = /home/nvidia/BU-Autonomous-RaceCar/sensing
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nvidia/Downloads/aruco304/build
+CMAKE_BINARY_DIR = /home/nvidia/BU-Autonomous-RaceCar/sensing/build
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -100,6 +67,17 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -110,6 +88,28 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -124,14 +124,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/nvidia/Downloads/aruco304/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/Downloads/aruco304/build/CMakeFiles /home/nvidia/Downloads/aruco304/build/utils_svm/CMakeFiles/progress.marks
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/Downloads/aruco304/build/CMakeFiles 0
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/BU-Autonomous-RaceCar/sensing/build/CMakeFiles /home/nvidia/BU-Autonomous-RaceCar/sensing/build/utils_svm/CMakeFiles/progress.marks
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nvidia/BU-Autonomous-RaceCar/sensing/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/clean
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +141,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/preinstall
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/preinstall
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/nvidia/Downloads/aruco304/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 utils_svm/CMakeFiles/aruco_test_svm.dir/rule:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/CMakeFiles/aruco_test_svm.dir/rule
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f CMakeFiles/Makefile2 utils_svm/CMakeFiles/aruco_test_svm.dir/rule
 .PHONY : utils_svm/CMakeFiles/aruco_test_svm.dir/rule
 
 # Convenience name for target.
@@ -166,7 +166,7 @@ aruco_test_svm: utils_svm/CMakeFiles/aruco_test_svm.dir/rule
 
 # fast build rule for target.
 aruco_test_svm/fast:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/build
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/build
 .PHONY : aruco_test_svm/fast
 
 aruco_test_svm.o: aruco_test_svm.cpp.o
@@ -175,7 +175,7 @@ aruco_test_svm.o: aruco_test_svm.cpp.o
 
 # target to build an object file
 aruco_test_svm.cpp.o:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/aruco_test_svm.cpp.o
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/aruco_test_svm.cpp.o
 .PHONY : aruco_test_svm.cpp.o
 
 aruco_test_svm.i: aruco_test_svm.cpp.i
@@ -184,7 +184,7 @@ aruco_test_svm.i: aruco_test_svm.cpp.i
 
 # target to preprocess a source file
 aruco_test_svm.cpp.i:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/aruco_test_svm.cpp.i
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/aruco_test_svm.cpp.i
 .PHONY : aruco_test_svm.cpp.i
 
 aruco_test_svm.s: aruco_test_svm.cpp.s
@@ -193,7 +193,7 @@ aruco_test_svm.s: aruco_test_svm.cpp.s
 
 # target to generate assembly for a file
 aruco_test_svm.cpp.s:
-	cd /home/nvidia/Downloads/aruco304/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/aruco_test_svm.cpp.s
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(MAKE) -f utils_svm/CMakeFiles/aruco_test_svm.dir/build.make utils_svm/CMakeFiles/aruco_test_svm.dir/aruco_test_svm.cpp.s
 .PHONY : aruco_test_svm.cpp.s
 
 # Help Target
@@ -202,12 +202,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... aruco_test_svm"
 	@echo "... install/strip"
+	@echo "... rebuild_cache"
+	@echo "... aruco_test_svm"
 	@echo "... install/local"
+	@echo "... list_install_components"
+	@echo "... install"
 	@echo "... edit_cache"
 	@echo "... aruco_test_svm.o"
 	@echo "... aruco_test_svm.i"
@@ -223,6 +223,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/nvidia/Downloads/aruco304/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/nvidia/BU-Autonomous-RaceCar/sensing/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
